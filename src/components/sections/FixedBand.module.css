@@ -1,0 +1,83 @@
+/*
+  HOW THE "FIXED BACKGROUND" WORKS
+  1. .bg is position: fixed → it's glued to the SCREEN, not the page,
+     and covers the whole screen.
+  2. clip-path: inset(0) on the section acts like a window: you only see
+     the fixed photo through the section's own rectangle.
+  3. As you scroll, the window moves up the screen but the photo doesn't,
+     so it looks like the page is sliding over a still photograph.
+  (The older "background-attachment: fixed" trick doesn't work on iPhones;
+   this one does.)
+*/
+.band {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 92vh;
+  clip-path: inset(0);
+  color: var(--white);
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+.img {
+  object-fit: cover;
+}
+
+/* Darkens the side the text is on, so it's readable on any photo */
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(18, 14, 10, 0.15) 20%, rgba(18, 14, 10, 0.72));
+}
+.left::before {
+  background: linear-gradient(270deg, rgba(18, 14, 10, 0.15) 20%, rgba(18, 14, 10, 0.72));
+}
+
+/* Thin gold inner border */
+.frame {
+  position: absolute;
+  inset: clamp(14px, 2.4vw, 30px);
+  border: 1px solid rgba(217, 194, 145, 0.5);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+}
+.card {
+  max-width: 520px;
+  margin-left: auto;
+}
+.left .card {
+  margin-left: 0;
+}
+
+.card :global(.eyebrow) {
+  color: var(--gold-soft);
+}
+.title {
+  margin: 18px 0 22px;
+  font-size: clamp(40px, 5.2vw, 80px);
+}
+.title em {
+  color: var(--gold-soft);
+}
+.text {
+  margin-bottom: 34px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 640px) {
+  .band::before {
+    background: rgba(18, 14, 10, 0.55);
+  }
+  .card {
+    padding: 0 8px;
+  }
+}

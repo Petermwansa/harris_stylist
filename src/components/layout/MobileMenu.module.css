@@ -1,0 +1,43 @@
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--ivory);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.close {
+  position: absolute;
+  top: 26px;
+  right: var(--pad);
+  font: 500 11px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.link {
+  font: 400 clamp(30px, 8vw, 40px) / 1.1 var(--serif);
+  transition: color 0.3s;
+}
+.link:hover {
+  color: var(--gold-deep);
+  font-style: italic;
+}
+
+.ig {
+  font: 400 11px var(--sans);
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}

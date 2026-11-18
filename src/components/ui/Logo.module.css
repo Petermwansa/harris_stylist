@@ -1,0 +1,33 @@
+.logo {
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+
+.word {
+  display: block;
+  font: 500 clamp(22px, 2.4vw, 30px) / 1 var(--serif);
+  /* low optical size = thicker hairlines, so the "H" crossbar stays visible */
+  font-variation-settings: "opsz" 11;
+  letter-spacing: 0.34em;
+  padding-left: 0.34em; /* balances the letter-spacing after the last letter */
+}
+
+.sub {
+  display: block;
+  margin-top: 7px;
+  font: 400 8.5px var(--sans);
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  transition: color 0.5s var(--ease);
+}
+
+.left {
+  text-align: left;
+}
+.left .word,
+.left .sub {
+  padding-left: 0;
+}

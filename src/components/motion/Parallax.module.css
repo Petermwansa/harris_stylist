@@ -1,0 +1,15 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+/* 30% taller than the frame (15% spare above and below) */
+.inner {
+  position: absolute;
+  inset: -15% 0;
+}
+
+.img {
+  object-fit: cover;
+}

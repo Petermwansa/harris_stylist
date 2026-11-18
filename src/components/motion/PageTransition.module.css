@@ -1,0 +1,24 @@
+.wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 90; /* above the header (50) and lightbox (80), below the loader (100) */
+  display: grid;
+  place-items: center;
+  pointer-events: none; /* never blocks clicks, even mid-animation */
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform-origin: top; /* shrinks UPWARD: the curtain lifts */
+}
+
+.word {
+  position: relative;
+  font: 500 clamp(24px, 3vw, 34px) / 1 var(--serif);
+  font-variation-settings: "opsz" 11;
+  letter-spacing: 0.34em;
+  padding-left: 0.34em;
+  color: var(--ivory);
+}

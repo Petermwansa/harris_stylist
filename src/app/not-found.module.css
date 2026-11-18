@@ -1,0 +1,46 @@
+.page {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 140px var(--pad) 100px;
+  text-align: center;
+}
+
+/* Huge, faint italic "404" behind the text — echoes the loader's "Welcome" */
+.code {
+  margin-bottom: -0.35em;
+  font: italic 400 clamp(140px, 26vw, 340px) / 1 var(--serif);
+  color: var(--gold);
+  opacity: 0.12;
+}
+
+.title {
+  max-width: 760px;
+  margin-top: 16px;
+  font-size: clamp(36px, 5vw, 70px);
+}
+.title em {
+  color: var(--gold);
+}
+
+.text {
+  max-width: 480px;
+  margin: 22px auto 36px;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+}
+.link {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold);
+  font: 500 11px var(--sans);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}

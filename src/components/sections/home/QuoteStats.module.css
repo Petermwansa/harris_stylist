@@ -1,0 +1,62 @@
+.wrap {
+  max-width: 1040px;
+  text-align: center;
+}
+
+.mark {
+  display: block;
+  height: 46px;
+  margin-top: 20px;
+  font: italic 400 110px / 0.6 var(--serif);
+  color: var(--gold);
+}
+
+.quote {
+  font: italic 400 clamp(28px, 3.6vw, 50px) / 1.25 var(--serif);
+}
+
+.text {
+  max-width: 640px;
+  margin: 30px auto 0;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 80px;
+  border-top: 1px solid var(--line);
+}
+.stat {
+  padding: 34px 20px 0;
+}
+.stat + .stat {
+  border-left: 1px solid var(--line);
+}
+.stat b {
+  display: block;
+  font: 400 clamp(40px, 4.4vw, 60px) / 1 var(--serif);
+  color: var(--gold-deep);
+  font-variant-numeric: tabular-nums; /* every digit the same width → no jiggle while counting */
+}
+.stat span {
+  display: block;
+  margin-top: 12px;
+  font: 400 10px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .stat + .stat {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .stat {
+    padding-bottom: 30px;
+  }
+}

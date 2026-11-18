@@ -1,0 +1,67 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+}
+
+.title {
+  margin-top: 22px;
+  font-size: clamp(36px, 4.6vw, 68px);
+}
+.title em {
+  color: var(--gold);
+}
+
+.grid p + p {
+  margin-top: 18px;
+}
+.muted {
+  color: var(--muted);
+}
+
+.cta {
+  margin-top: 38px;
+}
+
+/* The photo composition: a big portrait, a smaller one overlapping its corner */
+.stack {
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+.large {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 78%;
+  height: 86%;
+}
+.small {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  height: 52%;
+  outline: 10px solid var(--ivory); /* a "mat" that separates it from the big photo */
+}
+
+.vertical {
+  position: absolute;
+  top: 12%;
+  left: -18px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font: 400 10px var(--sans);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .vertical {
+    display: none;
+  }
+}

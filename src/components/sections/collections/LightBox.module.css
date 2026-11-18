@@ -1,0 +1,84 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80; /* above the header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: rgba(250, 247, 241, 0.97);
+  cursor: zoom-out;
+}
+
+/* A portrait frame: as tall as fits, never wider than the screen */
+.frame {
+  position: relative;
+  height: min(76vh, 118vw);
+  aspect-ratio: 3 / 4;
+  max-width: 92vw;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  cursor: default;
+}
+.img {
+  object-fit: cover;
+}
+
+.caption {
+  text-align: center;
+  cursor: default;
+}
+.caption span {
+  display: block;
+  font: 400 10px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.caption b {
+  display: block;
+  margin-top: 6px;
+  font: italic 400 26px var(--serif);
+}
+
+.close {
+  position: absolute;
+  top: 24px;
+  right: var(--pad);
+  font: 500 11px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font: 400 20px var(--serif);
+  color: var(--gold-deep);
+  transform: translateY(-50%);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.arrow:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+.prev {
+  left: var(--pad);
+}
+.next {
+  right: var(--pad);
+}
+
+@media (max-width: 640px) {
+  .arrow {
+    top: auto;
+    bottom: 22px;
+    transform: none;
+  }
+}

@@ -1,0 +1,68 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 34px;
+  overflow: hidden;
+  isolation: isolate; /* keeps the ::before layer behind the text */
+  font: 500 11px/1 var(--sans);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  color: var(--ink);
+  transition: color 0.5s var(--ease);
+}
+
+/* A gold panel hidden at scaleX(0); it wipes in from the left on hover */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--out);
+}
+.btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.btn:hover {
+  color: var(--white);
+}
+
+.solid {
+  background: var(--gold);
+  color: var(--white);
+}
+.solid::before {
+  background: var(--ink);
+}
+
+.light {
+  color: var(--white);
+  border-color: var(--gold-soft);
+}
+
+/* Text link with a gold underline (no box) */
+.link,
+.link-light {
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid var(--gold);
+}
+.link::before,
+.link-light::before {
+  display: none;
+}
+.link:hover {
+  color: var(--gold-deep);
+}
+.link-light {
+  color: var(--white);
+}
+.link-light:hover {
+  color: var(--gold-soft);
+}

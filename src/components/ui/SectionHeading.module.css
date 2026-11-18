@@ -1,0 +1,33 @@
+.title {
+  margin-top: 18px;
+  font-size: clamp(36px, 4.4vw, 64px);
+}
+.title em {
+  color: var(--gold);
+}
+
+.text {
+  max-width: 560px;
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+.center {
+  text-align: center;
+}
+.center .text {
+  margin-inline: auto;
+}
+
+.light .title {
+  color: var(--white);
+}
+.light .title em {
+  color: var(--gold-soft);
+}
+.light :global(.eyebrow) {
+  color: var(--gold-soft);
+}
+.light .text {
+  color: rgba(255, 255, 255, 0.85);
+}

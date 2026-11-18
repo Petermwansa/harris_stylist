@@ -1,0 +1,122 @@
+/* Fixed to the top, white text, no background — sits on top of the hero image */
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  color: var(--white);
+  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+/* 3 columns: left nav | logo | right nav. "1fr auto 1fr" keeps the logo
+   perfectly centred even if the two navs have different widths. */
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 22px var(--pad);
+  transition: padding 0.5s var(--ease);
+}
+
+/* After scrolling: ivory glass background, dark text, slimmer bar */
+.solid {
+  background: rgba(250, 247, 241, 0.94);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  box-shadow: 0 1px 0 var(--line);
+}
+.solid .bar {
+  padding-block: 14px;
+}
+/* :global() lets us reach into the Logo's class from here
+   — without it, CSS Modules would rename the selector. */
+.solid :global(small) {
+  color: var(--gold);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 36px);
+}
+.right {
+  justify-content: flex-end;
+}
+
+.link {
+  position: relative;
+  padding: 6px 0;
+  font: 400 11px/1 var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* The gold underline: a 1px line scaled to 0 width, grows on hover */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--gold-soft);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--out);
+}
+.link:hover::after,
+.active::after {
+  transform: scaleX(1);
+}
+
+.book {
+  border: 1px solid currentColor;
+  padding: 11px 18px;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s;
+}
+.book::after {
+  display: none;
+}
+.book:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+
+/* Two thin lines — hidden on desktop */
+.burger {
+  display: none;
+  position: relative;
+  width: 28px;
+  height: 14px;
+  justify-self: end;
+}
+.burger i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+}
+.burger i:first-child {
+  top: 0;
+}
+.burger i:last-child {
+  bottom: 0;
+}
+
+/* Tablet & phone: hide the navs, show the burger */
+@media (max-width: 1000px) {
+  .nav {
+    display: none;
+  }
+  .bar {
+    grid-template-columns: 40px 1fr 40px;
+  }
+  .logo {
+    grid-column: 2;
+  }
+  .burger {
+    display: block;
+    grid-column: 3;
+  }
+}

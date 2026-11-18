@@ -1,0 +1,81 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  margin: 34px 0 54px;
+}
+
+.tab {
+  position: relative;
+  padding-bottom: 10px;
+  font: 500 11px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.4s;
+}
+.on {
+  color: var(--ink);
+}
+.underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--gold);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.4vw, 34px);
+}
+/* The middle photo sits lower — a small asymmetry that feels editorial */
+.item:nth-child(2) {
+  margin-top: 60px;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream);
+}
+.img {
+  object-fit: cover;
+  transition: transform 1.4s var(--out);
+}
+.item:hover .img {
+  transform: scale(1.06);
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 16px;
+}
+.caption b {
+  font: 400 21px var(--serif);
+}
+.caption span {
+  font: 400 10px var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.more {
+  margin-top: 60px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .item:nth-child(2) {
+    margin-top: 0;
+  }
+}

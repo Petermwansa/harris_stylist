@@ -1,0 +1,71 @@
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 64px;
+}
+
+.title {
+  margin-top: 18px;
+  font-size: clamp(36px, 4.4vw, 64px);
+}
+.title em {
+  color: var(--gold);
+}
+
+/* Thin gold lines between the cards, like a printed table */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.card {
+  padding: 44px 36px 48px;
+  border-bottom: 1px solid var(--line);
+}
+.card:not(:nth-child(3n + 1)) {
+  border-left: 1px solid var(--line);
+}
+
+.n {
+  font: italic 400 15px var(--serif);
+  color: var(--gold);
+}
+.card h3 {
+  margin: 20px 0 14px;
+  font-size: 28px;
+  transition: color 0.4s var(--ease);
+}
+.card p {
+  font-size: 15px;
+  color: var(--muted);
+}
+.card:hover h3 {
+  color: var(--gold-deep);
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card:not(:nth-child(3n + 1)) {
+    border-left: 0;
+  }
+  .card:nth-child(even) {
+    border-left: 1px solid var(--line);
+  }
+}
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding-inline: 0;
+  }
+  .card:nth-child(even) {
+    border-left: 0;
+  }
+}

@@ -1,0 +1,70 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* above the header (50) and the mobile menu (60) */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--ivory);
+}
+
+/* Set by the inline script BEFORE the first paint for returning visitors,
+   so they never see even a flicker of the loader. :global() because the
+   attribute lives on <html>, outside this module. */
+:global(html[data-intro="seen"]) .loader {
+  display: none;
+}
+
+.welcome {
+  position: absolute;
+  font: italic 400 clamp(96px, 24vw, 400px) / 1 var(--serif);
+  color: var(--gold);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.mark {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.svg {
+  width: 118px;
+  height: 118px;
+  overflow: visible;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.2;
+  transform-origin: center;
+}
+
+.mono {
+  font: italic 600 48px var(--serif);
+  font-variation-settings: "opsz" 11; /* sturdier hairlines so the H reads as H */
+  fill: var(--ink);
+}
+
+.word {
+  display: flex;
+  margin-top: 26px;
+  padding-left: 0.32em;
+  font: 500 clamp(28px, 4vw, 42px) / 1 var(--serif);
+  font-variation-settings: "opsz" 11;
+  letter-spacing: 0.32em;
+}
+.word span {
+  display: inline-block; /* transforms don't work on plain inline elements */
+}
+
+.tag {
+  margin-top: 16px;
+  font: 400 10px var(--sans);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+}

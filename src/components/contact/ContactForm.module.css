@@ -1,0 +1,66 @@
+.form,
+.thanks {
+  padding: clamp(26px, 4vw, 48px);
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.label {
+  margin-bottom: 14px;
+  font: 500 10px var(--sans);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 30px;
+}
+
+.errorSlot {
+  min-height: 44px;
+  padding-top: 16px;
+}
+.error {
+  font-size: 14px;
+  color: #9a3b2c;
+}
+
+.send {
+  padding: 16px 34px;
+  background: var(--gold);
+  color: var(--white);
+  font: 500 11px var(--sans);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: background 0.4s var(--ease);
+}
+.send:hover {
+  background: var(--ink);
+}
+.send:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.thanks {
+  text-align: center;
+}
+.thanks h3 {
+  margin: 14px 0;
+  font-size: clamp(32px, 3.6vw, 48px);
+}
+.thanks h3 em {
+  color: var(--gold);
+}
+.thanks p:last-child {
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

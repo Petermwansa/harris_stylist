@@ -1,40 +1,54 @@
+/* =========================================================
+   DESIGN TOKENS
+   Every colour, font and easing lives here once. Components
+   use var(--name) so a change here updates the whole site.
+   ========================================================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colours — white & gold theme */
+  --ivory: #faf7f1;
+  --white: #ffffff;
+  --cream: #f3ede2;
+  --gold: #b08d4f;
+  --gold-deep: #8c6d36;
+  --gold-soft: #d9c291;
+  --ink: #1c1915;
+  --muted: #6f675c;
+  --line: rgba(176, 141, 79, 0.35);
+
+  /* Fonts — the variables come from next/font in layout.tsx */
+  --serif: var(--font-serif), "Didot", "Bodoni 72", Georgia, serif;
+  --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+
+  /* Easing curves — the "luxury" feel is mostly slow, soft deceleration */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Side padding that grows with screen width (16px on phones → 72px max) */
+  --pad: clamp(16px, 5vw, 72px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-  height: 100%;
-}
-
-html,
 body {
-  max-width: 100vw;
+  background: var(--ivory);
+  color: var(--ink);
+  font: 300 16px/1.75 var(--sans);
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+img {
+  display: block;
+  max-width: 100%;
 }
 
 a {
@@ -42,8 +56,104 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   SHARED UTILITIES (used on every page)
+   ========================================================= */
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-inline: var(--pad);
+}
+
+.eyebrow {
+  font: 500 11px/1.4 var(--sans);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.gold {
+  color: var(--gold);
+}
+
+
+/* Vertical rhythm: every big section gets the same generous breathing room */
+.section {
+  padding-block: clamp(80px, 12vw, 160px);
+}
+.bg-white {
+  background: var(--white);
+}
+.bg-cream {
+  background: var(--cream);
+}
+
+
+/* A centred closing line + button at the end of a section */
+.center-block {
+  margin-top: 80px;
+  text-align: center;
+}
+.lead-italic {
+  margin-bottom: 26px;
+  font: italic 400 clamp(24px, 2.6vw, 34px) / 1.3 var(--serif);
+}
+
+/* Quotes: a big pull quote, a centred blockquote and its gold mark */
+.center-text {
+  max-width: 1040px;
+  text-align: center;
+}
+.pull-quote {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  font: 400 clamp(30px, 4vw, 58px) / 1.2 var(--serif);
+}
+.quote-mark {
+  display: block;
+  height: 46px;
+  font: italic 400 110px / 0.6 var(--serif);
+  color: var(--gold);
+}
+.big-quote {
+  font: italic 400 clamp(26px, 3.2vw, 44px) / 1.3 var(--serif);
+}
+
+/* Short gold line under headings */
+.rule {
+  width: 56px;
+  height: 1px;
+  margin: 22px 0;
+  background: var(--gold);
+}
+
+/* Respect people who turn off animations in their OS settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
+
+
+

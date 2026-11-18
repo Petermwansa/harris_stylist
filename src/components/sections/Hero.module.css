@@ -1,0 +1,116 @@
+.hero {
+  position: relative;
+  display: flex;
+  overflow: hidden; /* the zoomed image must not spill out */
+  background: var(--ink); /* shown for a split second before the photo loads */
+  color: var(--white);
+}
+
+.home {
+  height: 100svh; /* svh = "small viewport height": correct on phones with toolbars */
+  min-height: 600px;
+  align-items: flex-end;
+}
+
+.page {
+  height: 78svh;
+  min-height: 520px;
+  align-items: center;
+  text-align: center;
+}
+
+/* Slightly larger than the hero so panning never reveals an edge */
+.media,
+.drift {
+  position: absolute;
+  inset: -4%;
+}
+.drift {
+  inset: 0;
+}
+.img {
+  object-fit: cover;
+}
+
+/* Darken top (for the header) and bottom-left (for the headline) */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 16, 12, 0.45) 0%, rgba(20, 16, 12, 0.08) 30%, rgba(20, 16, 12, 0.35) 55%, rgba(20, 16, 12, 0.78) 100%),
+    linear-gradient(90deg, rgba(20, 16, 12, 0.35), transparent 60%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 var(--pad);
+}
+
+.home .content {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: end;
+  gap: 40px;
+  padding-bottom: clamp(48px, 9vh, 110px);
+}
+
+.title {
+  margin-top: 22px;
+}
+.home .title {
+  font-size: clamp(46px, 7.2vw, 118px);
+  line-height: 0.98;
+}
+.page .title {
+  font-size: clamp(44px, 6.4vw, 96px);
+}
+.title em {
+  color: var(--gold-soft);
+}
+
+.side {
+  justify-self: end;
+  max-width: 420px;
+}
+.side p {
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* The little line at the bottom with a gold dash travelling down it */
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 2;
+  width: 1px;
+  height: 46px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+.cue::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -50%;
+  width: 1px;
+  height: 50%;
+  background: var(--gold-soft);
+  animation: cue 2.2s var(--ease) infinite;
+}
+@keyframes cue {
+  to {
+    top: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .home .content {
+    grid-template-columns: 1fr;
+  }
+  .side {
+    justify-self: start;
+  }
+}

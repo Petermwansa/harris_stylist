@@ -37,3 +37,13 @@
   font: italic 400 22px var(--serif);
   color: var(--gold-deep);
 }
+
+.consent {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.consent a {
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-deep);
+}

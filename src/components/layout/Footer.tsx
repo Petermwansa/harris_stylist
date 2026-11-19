@@ -67,8 +67,9 @@ export default function Footer() {
           <span>
             © <CopyrightYear /> harris_stylist
           </span>
-          <span>Privacy · Terms</span>
-        </div>
+          <span className={styles.legal}>
+            <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link>
+          </span>        </div>
       </div>
     </footer>
   );

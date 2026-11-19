@@ -64,3 +64,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+.consent {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.consent a {
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-deep);
+}

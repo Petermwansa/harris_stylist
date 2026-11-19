@@ -3,9 +3,15 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChoiceCards, Field } from "@/components/booking/fields";
-import { contactTopics, emptyContact, validateContact, type ContactData } from "@/lib/contact";
+import {
+  contactTopics,
+  emptyContact,
+  validateContact,
+  type ContactData,
+} from "@/lib/contact";
 import { easeOut } from "@/lib/motion";
 import styles from "./ContactForm.module.css";
+import Link from "next/link";
 
 type Status = "editing" | "sending" | "sent";
 
@@ -50,7 +56,10 @@ export default function ContactForm() {
           <h3>
             Thank you, <em>{data.name.trim().split(" ")[0]}.</em>
           </h3>
-          <p>We&apos;ll reply to {data.email.trim()} as soon as we can, usually within a day.</p>
+          <p>
+            We&apos;ll reply to {data.email.trim()} as soon as we can, usually
+            within a day.
+          </p>
         </motion.div>
       ) : (
         <motion.form
@@ -61,15 +70,46 @@ export default function ContactForm() {
           exit={{ opacity: 0, y: -12, transition: { duration: 0.3 } }}
         >
           <p className={styles.label}>What is it about?</p>
-          <ChoiceCards name="topic" options={contactTopics} value={data.topic} onChange={update("topic")} />
+          <ChoiceCards
+            name="topic"
+            options={contactTopics}
+            value={data.topic}
+            onChange={update("topic")}
+          />
 
           <div className={styles.row}>
-            <Field label="Name" autoComplete="name" value={data.name} onChange={update("name")} />
-            <Field label="Email" type="email" autoComplete="email" value={data.email} onChange={update("email")} />
+            <Field
+              label="Name"
+              autoComplete="name"
+              value={data.name}
+              onChange={update("name")}
+            />
+            <Field
+              label="Email"
+              type="email"
+              autoComplete="email"
+              value={data.email}
+              onChange={update("email")}
+            />
           </div>
-          <Field label="Phone / WhatsApp" type="tel" optional autoComplete="tel" value={data.phone} onChange={update("phone")} />
-          <Field label="Message" multiline value={data.message} onChange={update("message")} />
-
+          <Field
+            label="Phone / WhatsApp"
+            type="tel"
+            optional
+            autoComplete="tel"
+            value={data.phone}
+            onChange={update("phone")}
+          />
+          <Field
+            label="Message"
+            multiline
+            value={data.message}
+            onChange={update("message")}
+          />
+          <p className={styles.consent}>
+            We&apos;ll only use your details to reply. See our{" "}
+            <Link href="/privacy">Privacy Policy</Link>.
+          </p>
           <div className={styles.errorSlot} aria-live="polite">
             {error && (
               <motion.p
@@ -84,7 +124,11 @@ export default function ContactForm() {
             )}
           </div>
 
-          <button type="submit" className={styles.send} disabled={status === "sending"}>
+          <button
+            type="submit"
+            className={styles.send}
+            disabled={status === "sending"}
+          >
             {status === "sending" ? "Sending…" : "Send Message"}
           </button>
         </motion.form>

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useLenis } from "lenis/react";
+import Link from "next/link";
 import { ChoiceCards, Field, TimeSlots } from "./fields";
 import {
   emptyBooking,
@@ -27,7 +28,11 @@ import Confirmation from "./Confirmation";
 const slide: Variants = {
   enter: (direction: number) => ({ x: direction * 60, opacity: 0 }),
   center: { x: 0, opacity: 1, transition: { duration: 0.6, ease: easeOut } },
-  exit: (direction: number) => ({ x: direction * -60, opacity: 0, transition: { duration: 0.3 } }),
+  exit: (direction: number) => ({
+    x: direction * -60,
+    opacity: 0,
+    transition: { duration: 0.3 },
+  }),
 };
 
 type Status = "editing" | "sending" | "sent";
@@ -71,7 +76,8 @@ export default function BookingForm() {
   // with mode="wait" the OLD step is still on screen when `step` changes,
   // so focusing straight away would focus the heading that's about to vanish.
   function focusQuestion(definition: unknown) {
-    if (definition === "center" && moved.current) headingRef.current?.focus({ preventScroll: true });
+    if (definition === "center" && moved.current)
+      headingRef.current?.focus({ preventScroll: true });
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -98,9 +104,17 @@ export default function BookingForm() {
   const t = stepTitles[step];
 
   return (
-    <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate>
+    <form
+      ref={formRef}
+      className={styles.form}
+      onSubmit={handleSubmit}
+      noValidate
+    >
       {/* ---------- Progress ---------- */}
-      <div className={styles.progress} aria-label={`Step ${step + 1} of ${STEP_COUNT}`}>
+      <div
+        className={styles.progress}
+        aria-label={`Step ${step + 1} of ${STEP_COUNT}`}
+      >
         <div className={styles.track}>
           <motion.div
             className={styles.fill}
@@ -109,7 +123,10 @@ export default function BookingForm() {
           />
         </div>
         {stepTitles.map((_, i) => (
-          <span key={i} className={`${styles.dot} ${i < step ? styles.past : ""} ${i === step ? styles.current : ""}`}>
+          <span
+            key={i}
+            className={`${styles.dot} ${i < step ? styles.past : ""} ${i === step ? styles.current : ""}`}
+          >
             {i < step ? "✓" : i + 1}
           </span>
         ))}
@@ -134,28 +151,73 @@ export default function BookingForm() {
 
             {step === 0 && (
               <>
-                <ChoiceCards name="occasion" options={occasionOptions} value={data.occasion} onChange={update("occasion")} />
-                <Field label="Tell us a little about the occasion" multiline optional value={data.about} onChange={update("about")} />
+                <ChoiceCards
+                  name="occasion"
+                  options={occasionOptions}
+                  value={data.occasion}
+                  onChange={update("occasion")}
+                />
+                <Field
+                  label="Tell us a little about the occasion"
+                  multiline
+                  optional
+                  value={data.about}
+                  onChange={update("about")}
+                />
               </>
             )}
 
             {step === 1 && (
               <>
-                <ChoiceCards name="style" options={styleOptions} value={data.style} onChange={update("style")} />
-                <Field label="What do you already wear that you love?" multiline optional value={data.love} onChange={update("love")} />
+                <ChoiceCards
+                  name="style"
+                  options={styleOptions}
+                  value={data.style}
+                  onChange={update("style")}
+                />
+                <Field
+                  label="What do you already wear that you love?"
+                  multiline
+                  optional
+                  value={data.love}
+                  onChange={update("love")}
+                />
               </>
             )}
 
             {step === 2 && (
               <>
-                <ChoiceCards name="format" options={formatOptions} value={data.format} onChange={update("format")} />
+                <ChoiceCards
+                  name="format"
+                  options={formatOptions}
+                  value={data.format}
+                  onChange={update("format")}
+                />
                 <div className={styles.row}>
-                  <Field label="Preferred date" type="date" min={todayISO()} value={data.date} onChange={update("date")} />
-                  <Field label="Date of the occasion" type="date" optional min={todayISO()} value={data.occasionDate} onChange={update("occasionDate")} />
+                  <Field
+                    label="Preferred date"
+                    type="date"
+                    min={todayISO()}
+                    value={data.date}
+                    onChange={update("date")}
+                  />
+                  <Field
+                    label="Date of the occasion"
+                    type="date"
+                    optional
+                    min={todayISO()}
+                    value={data.occasionDate}
+                    onChange={update("occasionDate")}
+                  />
                 </div>
                 <div className={styles.field}>
                   <p className={styles.label}>Preferred time</p>
-                  <TimeSlots name="time" options={timeSlots} value={data.time} onChange={update("time")} />
+                  <TimeSlots
+                    name="time"
+                    options={timeSlots}
+                    value={data.time}
+                    onChange={update("time")}
+                  />
                 </div>
               </>
             )}
@@ -163,12 +225,47 @@ export default function BookingForm() {
             {step === 3 && (
               <>
                 <div className={styles.row}>
-                  <Field label="First name" autoComplete="given-name" value={data.firstName} onChange={update("firstName")} />
-                  <Field label="Last name" optional autoComplete="family-name" value={data.lastName} onChange={update("lastName")} />
-                  <Field label="Email address" type="email" autoComplete="email" value={data.email} onChange={update("email")} />
-                  <Field label="Phone / WhatsApp" type="tel" optional autoComplete="tel" value={data.phone} onChange={update("phone")} />
+                  <Field
+                    label="First name"
+                    autoComplete="given-name"
+                    value={data.firstName}
+                    onChange={update("firstName")}
+                  />
+                  <Field
+                    label="Last name"
+                    optional
+                    autoComplete="family-name"
+                    value={data.lastName}
+                    onChange={update("lastName")}
+                  />
+                  <Field
+                    label="Email address"
+                    type="email"
+                    autoComplete="email"
+                    value={data.email}
+                    onChange={update("email")}
+                  />
+                  <Field
+                    label="Phone / WhatsApp"
+                    type="tel"
+                    optional
+                    autoComplete="tel"
+                    value={data.phone}
+                    onChange={update("phone")}
+                  />
                 </div>
-                <Field label="Anything else we should know?" multiline optional value={data.notes} onChange={update("notes")} />
+                <Field
+                  label="Anything else we should know?"
+                  multiline
+                  optional
+                  value={data.notes}
+                  onChange={update("notes")}
+                />
+                <p className={styles.consent}>
+                  By sending this request you agree to our{" "}
+                  <Link href="/privacy">Privacy Policy</Link> and{" "}
+                  <Link href="/terms">Terms</Link>.
+                </p>
               </>
             )}
           </motion.div>
@@ -192,14 +289,27 @@ export default function BookingForm() {
 
       {/* ---------- Navigation ---------- */}
       <div className={styles.nav}>
-        <button type="button" className={styles.back} onClick={() => goTo(step - 1)} disabled={step === 0}>
+        <button
+          type="button"
+          className={styles.back}
+          onClick={() => goTo(step - 1)}
+          disabled={step === 0}
+        >
           ← Back
         </button>
         <span className={styles.count}>
           {step + 1} / {STEP_COUNT}
         </span>
-        <button type="submit" className={styles.next} disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : step === STEP_COUNT - 1 ? "Send Request" : "Continue"}
+        <button
+          type="submit"
+          className={styles.next}
+          disabled={status === "sending"}
+        >
+          {status === "sending"
+            ? "Sending…"
+            : step === STEP_COUNT - 1
+              ? "Send Request"
+              : "Continue"}
         </button>
       </div>
     </form>

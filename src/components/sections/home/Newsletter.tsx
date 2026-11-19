@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { easeOut } from "@/lib/motion";
 import styles from "./Newsletter.module.css";
+import Link from "next/link";
 
 // For now the form only shows a thank-you. In Step 10 we'll save the
 // email to Firebase (Firestore) instead.
@@ -23,7 +24,11 @@ export default function Newsletter() {
         <SectionHeading
           center
           eyebrow="The Harris letter"
-          title={<>From the atelier, <em>to your inbox</em></>}
+          title={
+            <>
+              From the atelier, <em>to your inbox</em>
+            </>
+          }
           text="New collections, private previews and appointment openings. Only when there's something worth seeing."
         />
 
@@ -46,12 +51,21 @@ export default function Newsletter() {
                 onSubmit={handleSubmit}
                 exit={{ opacity: 0, y: -12, transition: { duration: 0.3 } }}
               >
-                <input type="email" required placeholder="Your email address" aria-label="Email address" />
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email address"
+                  aria-label="Email address"
+                />
                 <button type="submit">Join</button>
               </motion.form>
             )}
           </AnimatePresence>
         </div>
+        <p className={styles.consent}>
+          Unsubscribe any time. See our{" "}
+          <Link href="/privacy">Privacy Policy</Link>.
+        </p>
       </div>
     </section>
   );

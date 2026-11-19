@@ -56,6 +56,13 @@
   color: rgba(255, 255, 255, 0.45);
 }
 
+.legal a {
+  transition: color 0.3s;
+}
+.legal a:hover {
+  color: var(--gold-soft);
+}
+
 @media (max-width: 1000px) {
   .cols {
     grid-template-columns: 1fr 1fr;

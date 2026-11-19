@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
-import Providers from "@/components/Providers";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import PageTransition from "@/components/motion/PageTransition";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -55,14 +51,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     // suppressHydrationWarning: the loader's inline script may add
     // data-intro="seen" to <html> before React loads. That's intended.
     <html lang="en" className={`${bodoni.variable} ${jost.variable}`} suppressHydrationWarning>
-      <body>
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-          <PageTransition />
-        </Providers>
-      </body>
+      {/* The root layout only sets up fonts and <html>/<body>.
+          The public site and the admin panel each add their own layout:
+          app/(site)/layout.tsx and app/admin/layout.tsx */}
+      <body>{children}</body>
     </html>
   );
 }

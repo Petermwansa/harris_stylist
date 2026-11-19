@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const storageBucket = process.env.FIREBASE_STORAGE_BUCKET;
+
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
@@ -10,7 +12,7 @@ const nextConfig: NextConfig = {
     // server to resize THEIR images.
     remotePatterns: [
       {
-        // Unsplash = our placeholder photos. In Step 10 we add Firebase Storage.
+        // Unsplash = our placeholder photos.
         protocol: "https",
         hostname: "images.unsplash.com",
         pathname: "/**",
@@ -18,6 +20,18 @@ const nextConfig: NextConfig = {
         // built in src/lib/images.ts: ?w=2400&q=85
         search: "?w=2400&q=85",
       },
+      // Harris's own photos in Firebase Storage — only from HIS bucket.
+      // Download URLs end in "?alt=media&token=…" (a different token per
+      // photo), so here we leave `search` out to allow any query string.
+      ...(storageBucket
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: "firebasestorage.googleapis.com",
+              pathname: `/v0/b/${storageBucket}/o/**`,
+            },
+          ]
+        : []),
     ],
   },
 };

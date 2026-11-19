@@ -1,0 +1,81 @@
+.page {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 100svh;
+  background: var(--ivory);
+}
+
+/* Left: the brand photo */
+.visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.img {
+  object-fit: cover;
+  opacity: 0.85;
+}
+.visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(20, 16, 12, 0.75));
+}
+.visualText {
+  position: absolute;
+  left: clamp(30px, 5vw, 64px);
+  bottom: clamp(30px, 6vw, 70px);
+  z-index: 1;
+  color: var(--white);
+}
+.visualText :global(.eyebrow) {
+  color: var(--gold-soft);
+}
+.quote {
+  margin-top: 14px;
+  font: 400 clamp(36px, 4vw, 58px) / 1.05 var(--serif);
+}
+.quote em {
+  color: var(--gold-soft);
+}
+
+/* Right: the form */
+.panel {
+  display: grid;
+  place-items: center;
+  padding: 40px var(--pad);
+}
+.inner {
+  width: min(380px, 100%);
+}
+.mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 26px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font: italic 600 28px var(--serif);
+  font-variation-settings: "opsz" 11;
+  color: var(--ink);
+}
+.title {
+  font-size: clamp(40px, 4vw, 54px);
+}
+.title em {
+  color: var(--gold);
+}
+.sub {
+  margin: 10px 0 34px;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    display: none;
+  }
+}

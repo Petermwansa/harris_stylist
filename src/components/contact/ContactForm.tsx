@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ChoiceCards, Field } from "@/components/booking/fields";
-import {
-  contactTopics,
-  emptyContact,
-  validateContact,
-  type ContactData,
-} from "@/lib/contact";
+import { ChoiceCards, Field, Honeypot } from "@/components/booking/fields";
+import { submitContact } from "@/app/actions";
+import { contactTopics, emptyContact, validateContact, type ContactData } from "@/lib/contact";
 import { easeOut } from "@/lib/motion";
 import styles from "./ContactForm.module.css";
-import Link from "next/link";
 
 type Status = "editing" | "sending" | "sent";
 
@@ -21,23 +17,29 @@ export default function ContactForm() {
   const [error, setError] = useState<string | null>(null);
   const [errorCount, setErrorCount] = useState(0);
   const [status, setStatus] = useState<Status>("editing");
+  const [trap, setTrap] = useState("");
 
   const update = (key: keyof ContactData) => (value: string) => {
     setData((d) => ({ ...d, [key]: value }));
     if (error) setError(null);
   };
 
+  function showError(message: string) {
+    setError(message);
+    setErrorCount((n) => n + 1);
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const problem = validateContact(data);
-    if (problem) {
-      setError(problem);
-      setErrorCount((n) => n + 1);
-      return;
-    }
+    if (problem) return showError(problem);
+
     setStatus("sending");
-    // TODO (Step 10): save the message to Firebase.
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    const result = await submitContact(data, trap); // runs on the server
+    if (!result.ok) {
+      setStatus("editing");
+      return showError(result.error);
+    }
     setStatus("sent");
   }
 
@@ -56,10 +58,7 @@ export default function ContactForm() {
           <h3>
             Thank you, <em>{data.name.trim().split(" ")[0]}.</em>
           </h3>
-          <p>
-            We&apos;ll reply to {data.email.trim()} as soon as we can, usually
-            within a day.
-          </p>
+          <p>We&apos;ll reply to {data.email.trim()} as soon as we can, usually within a day.</p>
         </motion.div>
       ) : (
         <motion.form
@@ -69,47 +68,20 @@ export default function ContactForm() {
           noValidate
           exit={{ opacity: 0, y: -12, transition: { duration: 0.3 } }}
         >
+          <Honeypot value={trap} onChange={setTrap} />
           <p className={styles.label}>What is it about?</p>
-          <ChoiceCards
-            name="topic"
-            options={contactTopics}
-            value={data.topic}
-            onChange={update("topic")}
-          />
+          <ChoiceCards name="topic" options={contactTopics} value={data.topic} onChange={update("topic")} />
 
           <div className={styles.row}>
-            <Field
-              label="Name"
-              autoComplete="name"
-              value={data.name}
-              onChange={update("name")}
-            />
-            <Field
-              label="Email"
-              type="email"
-              autoComplete="email"
-              value={data.email}
-              onChange={update("email")}
-            />
+            <Field label="Name" autoComplete="name" value={data.name} onChange={update("name")} />
+            <Field label="Email" type="email" autoComplete="email" value={data.email} onChange={update("email")} />
           </div>
-          <Field
-            label="Phone / WhatsApp"
-            type="tel"
-            optional
-            autoComplete="tel"
-            value={data.phone}
-            onChange={update("phone")}
-          />
-          <Field
-            label="Message"
-            multiline
-            value={data.message}
-            onChange={update("message")}
-          />
+          <Field label="Phone / WhatsApp" type="tel" optional autoComplete="tel" value={data.phone} onChange={update("phone")} />
+          <Field label="Message" multiline value={data.message} onChange={update("message")} />
           <p className={styles.consent}>
-            We&apos;ll only use your details to reply. See our{" "}
-            <Link href="/privacy">Privacy Policy</Link>.
+            We&apos;ll only use your details to reply. See our <Link href="/privacy">Privacy Policy</Link>.
           </p>
+
           <div className={styles.errorSlot} aria-live="polite">
             {error && (
               <motion.p
@@ -124,11 +96,7 @@ export default function ContactForm() {
             )}
           </div>
 
-          <button
-            type="submit"
-            className={styles.send}
-            disabled={status === "sending"}
-          >
+          <button type="submit" className={styles.send} disabled={status === "sending"}>
             {status === "sending" ? "Sending…" : "Send Message"}
           </button>
         </motion.form>

@@ -8,6 +8,7 @@
 }
 
 .form {
+  position: relative; /* keeps the off-screen spam trap anchored */
   display: flex;
   border-bottom: 1px solid var(--gold);
 }
@@ -39,11 +40,19 @@
 }
 
 .consent {
-  margin-top: 18px;
+  margin-top: 14px;
+  text-align: center;
   font-size: 13px;
   color: var(--muted);
 }
 .consent a {
   border-bottom: 1px solid var(--line);
   color: var(--gold-deep);
+}
+
+.error {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: #9a3b2c;
 }

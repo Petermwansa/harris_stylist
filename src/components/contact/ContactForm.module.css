@@ -5,6 +5,10 @@
   border: 1px solid var(--line);
 }
 
+.form {
+  position: relative; /* keeps the off-screen spam trap anchored */
+}
+
 .label {
   margin-bottom: 14px;
   font: 500 10px var(--sans);
@@ -17,6 +21,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 30px;
+}
+
+.consent {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.consent a {
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-deep);
 }
 
 .errorSlot {
@@ -63,14 +77,4 @@
   .row {
     grid-template-columns: 1fr;
   }
-}
-
-.consent {
-  margin-top: 18px;
-  font-size: 13px;
-  color: var(--muted);
-}
-.consent a {
-  border-bottom: 1px solid var(--line);
-  color: var(--gold-deep);
 }

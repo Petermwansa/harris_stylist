@@ -32,6 +32,12 @@
   background: var(--gold);
 }
 
+.empty {
+  text-align: center;
+  font: italic 400 22px var(--serif);
+  color: var(--muted);
+}
+
 /*
   The grid: 3 columns, rows of a fixed small height.
   Normal pieces span 2 rows, tall pieces span 3, which gives the

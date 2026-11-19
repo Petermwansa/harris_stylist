@@ -90,3 +90,26 @@ export function Field({ label, value, onChange, type = "text", multiline, autoCo
     </div>
   );
 }
+
+/**
+ * A spam trap ("honeypot"). It's hidden from people — off-screen, skipped by
+ * the Tab key and by screen readers — but simple spam bots fill in every
+ * field they find. If it has a value, the server quietly ignores the message.
+ */
+export function Honeypot({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  return (
+    <div className={styles.honeypot} aria-hidden="true">
+      <label>
+        Leave this empty
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </label>
+    </div>
+  );
+}

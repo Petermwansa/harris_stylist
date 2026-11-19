@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// Photos are uploaded by the seed script (Admin SDK, which skips these rules)
+// or by Harris in the Firebase console. The website shows them through
+// "download URLs", which carry their own access token.
+// Browsers may not list, upload, change or delete anything.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

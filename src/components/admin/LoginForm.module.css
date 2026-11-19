@@ -1,0 +1,76 @@
+.form {
+  width: 100%;
+}
+
+.field {
+  display: block;
+  margin-bottom: 22px;
+}
+.field span {
+  display: block;
+  margin-bottom: 6px;
+  font: 500 10px var(--sans);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input {
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  outline: none;
+  font: 300 16px var(--sans);
+  color: var(--ink);
+  transition: border-color 0.3s;
+}
+.field input:focus {
+  border-color: var(--gold);
+}
+
+.message {
+  min-height: 22px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #9a3b2c;
+}
+.ok {
+  color: #3f5e4b;
+}
+
+.submit {
+  width: 100%;
+  padding: 17px;
+  background: var(--gold);
+  color: var(--white);
+  font: 500 11px var(--sans);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transition: background 0.4s var(--ease);
+}
+.submit:hover {
+  background: var(--ink);
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.forgot {
+  display: block;
+  margin: 18px auto 0;
+  font: 500 10px var(--sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.forgot:hover {
+  color: var(--gold-deep);
+}
+
+.setup {
+  font-size: 14px;
+  color: var(--muted);
+}

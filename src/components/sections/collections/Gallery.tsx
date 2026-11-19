@@ -3,12 +3,15 @@
 import { useCallback, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { categories, categoryLabel, works, type CategoryId } from "@/lib/content";
+import { categories, categoryLabel, type CategoryId, type Work } from "@/lib/content";
 import { easeOut } from "@/lib/motion";
 import styles from "./Gallery.module.css";
-import LightBox from "./LightBox";
+import Lightbox from "./LightBox";
 
-export default function Gallery() {
+// `works` now comes in as a prop: the PAGE (a server component) loads them
+// from Firestore and hands them over. Gallery itself doesn't know or care
+// where they came from.
+export default function Gallery({ works }: { works: Work[] }) {
   const [filter, setFilter] = useState<CategoryId>("all");
   const [openIndex, setOpenIndex] = useState<number | null>(null); // which photo is in the lightbox
   const [navigated, setNavigated] = useState(false); // used the arrows since opening?
@@ -54,6 +57,8 @@ export default function Gallery() {
         ))}
       </div>
 
+      {works.length === 0 && <p className={styles.empty}>New pieces are on their way. Please check back soon.</p>}
+
       <motion.div layout className={styles.grid}>
         {/* popLayout: leaving items are taken out of the layout straight away,
             so the remaining ones can glide into the gaps WHILE they fade out. */}
@@ -91,7 +96,7 @@ export default function Gallery() {
 
       <AnimatePresence>
         {openIndex !== null && visible[openIndex] && (
-          <LightBox
+          <Lightbox
             key="lightbox"
             work={visible[openIndex]}
             position={`${openIndex + 1} / ${visible.length}`}

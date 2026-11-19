@@ -205,6 +205,26 @@
   color: var(--white);
 }
 
+/* "By sending this request you agree to…" */
+.consent {
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.consent a {
+  border-bottom: 1px solid var(--line);
+  color: var(--gold-deep);
+}
+
+/* Spam trap: moved far off-screen (not display:none — some bots skip those) */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* ---------- Error + navigation ---------- */
 .errorSlot {
   min-height: 44px; /* reserve space so nothing jumps when an error appears */
@@ -323,14 +343,4 @@
   .next {
     padding: 14px 22px;
   }
-}
-
-.consent {
-  margin-top: 18px;
-  font-size: 13px;
-  color: var(--muted);
-}
-.consent a {
-  border-bottom: 1px solid var(--line);
-  color: var(--gold-deep);
 }

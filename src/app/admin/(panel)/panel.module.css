@@ -1,0 +1,149 @@
+/* ---------- Loading placeholders ---------- */
+.loading {
+  display: flex;
+  flex-direction: column;
+}
+.shimmer {
+  display: block;
+  background: linear-gradient(90deg, var(--cream) 0%, #f9f4ea 50%, var(--cream) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Dashboard ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.stat {
+  position: relative;
+  display: block;
+  padding: 24px 24px 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s, translate 0.5s var(--out), box-shadow 0.5s var(--out);
+}
+.stat:hover {
+  translate: 0 -4px;
+  border-color: var(--gold);
+  box-shadow: 0 18px 40px rgba(140, 109, 54, 0.1);
+}
+.stat span {
+  font: 500 9.5px var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat b {
+  display: block;
+  margin-top: 12px;
+  font: 400 52px / 1 var(--serif);
+  font-variation-settings: "opsz" 11; /* sturdier strokes: a "1" mustn't look like an "I" */
+  color: var(--ink);
+}
+.stat small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.highlight {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.highlight span,
+.highlight small {
+  color: var(--gold-soft);
+}
+.highlight b {
+  color: var(--white);
+}
+.statIcon {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: var(--gold);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.list {
+  list-style: none;
+}
+.list li + li {
+  border-top: 1px solid var(--line);
+}
+.listRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+}
+.listRow b {
+  display: block;
+  font: 400 18px var(--serif);
+}
+.listRow p {
+  margin-top: 2px;
+  overflow: hidden;
+  font-size: 13.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 34ch;
+}
+.dateBadge {
+  flex: none;
+  width: 58px;
+  padding: 8px 0;
+  border: 1px solid var(--line);
+  text-align: center;
+  line-height: 1.1;
+}
+.dateBadge small {
+  display: block;
+  font: 500 9px var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.dateBadge strong {
+  display: block;
+  font: 400 24px var(--serif);
+  font-variation-settings: "opsz" 11;
+}
+.rowLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 960px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}

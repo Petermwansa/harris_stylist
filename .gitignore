@@ -32,6 +32,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# …except the template, which contains no secrets and shows what's needed
+!.env.example
+
+# Firebase emulator logs and the service-account key file, if downloaded here
+*-debug.log
+*firebase-adminsdk*.json
 
 # vercel
 .vercel

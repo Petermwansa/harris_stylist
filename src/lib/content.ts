@@ -1,7 +1,8 @@
 import { images, type Photo } from "./images";
 
 // PLACEHOLDER copy. Replace with Harris's real words before launch.
-// Later (Step 10) the garments and testimonials can come from Firebase instead.
+// The Collections page now reads its pieces from Firestore (src/lib/works.ts);
+// `sampleWorks` below is only the fallback and the seed data.
 
 export const services = [
   { n: "i.", title: "Bespoke Couture", text: "One-of-one garments built around your measurements, your story and the occasion, from first sketch to final fitting." },
@@ -78,7 +79,9 @@ export type Work = {
   tall?: boolean; // takes up more height in the grid
 };
 
-export const works: Work[] = [
+// Sample pieces: shown while Firebase isn't set up yet, and used by
+// `npm run seed` as the starting content for the real database.
+export const sampleWorks: Work[] = [
   { id: "aurelia", name: "Aurelia Gown", category: "couture", photo: images.aurelia, tall: true },
   { id: "windowpane", name: "Windowpane Three-Piece", category: "menswear", photo: images.windowpane },
   { id: "crimson", name: "Crimson Sweep", category: "bridal", photo: images.crimson },
@@ -95,7 +98,6 @@ export const works: Work[] = [
 
 export const categoryLabel = (id: Work["category"]) =>
   categories.find((c) => c.id === id)?.label ?? id;
-
 
 // ---- Designer page ---------------------------------------------------------
 // PLACEHOLDER milestones: replace "20XX" with Harris's real years and events.

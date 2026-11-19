@@ -1,0 +1,122 @@
+[
+  {
+    "id": "aurelia",
+    "name": "Aurelia Gown",
+    "category": "couture",
+    "order": 10,
+    "tall": true,
+    "alt": "Aurelia gown — plum, off-the-shoulder",
+    "src": "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "windowpane",
+    "name": "Windowpane Three-Piece",
+    "category": "menswear",
+    "order": 20,
+    "tall": false,
+    "alt": "Windowpane three-piece suit in blue",
+    "src": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "crimson",
+    "name": "Crimson Sweep",
+    "category": "bridal",
+    "order": 30,
+    "tall": false,
+    "alt": "Crimson Sweep — red full-skirted gown",
+    "src": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "noir",
+    "name": "Noir Column",
+    "category": "rtw",
+    "order": 40,
+    "tall": true,
+    "alt": "Noir Column — black knit and quilted skirt",
+    "src": "https://images.unsplash.com/photo-1550639525-c97d455acf70?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "tartan",
+    "name": "Tartan Coat Edit",
+    "category": "styling",
+    "order": 50,
+    "tall": false,
+    "alt": "Tartan wool coat styled over black",
+    "src": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "midnight",
+    "name": "Midnight Suit",
+    "category": "menswear",
+    "order": 60,
+    "tall": true,
+    "alt": "Midnight suit, navy, worn with a white shirt",
+    "src": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "blush",
+    "name": "Blush Ruffle Blouse",
+    "category": "couture",
+    "order": 70,
+    "tall": false,
+    "alt": "Blush ruffled off-the-shoulder blouse",
+    "src": "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "powder",
+    "name": "Powder Coat",
+    "category": "styling",
+    "order": 80,
+    "tall": false,
+    "alt": "Powder-blue long coat with a pastel bag",
+    "src": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "garden",
+    "name": "Garden Wrap Dress",
+    "category": "rtw",
+    "order": 90,
+    "tall": true,
+    "alt": "Floral wrap dress caught in the breeze",
+    "src": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "navy",
+    "name": "The Navy Classic",
+    "category": "menswear",
+    "order": 100,
+    "tall": false,
+    "alt": "The Navy Classic — navy suit with striped tie",
+    "src": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "sheer",
+    "name": "Sheer Evening Blouse",
+    "category": "bridal",
+    "order": 110,
+    "tall": false,
+    "alt": "Sheer black evening blouse",
+    "src": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=2400&q=85",
+    "file": null
+  },
+  {
+    "id": "bordeaux",
+    "name": "Bordeaux Coat",
+    "category": "styling",
+    "order": 120,
+    "tall": false,
+    "alt": "Bordeaux coat with black leather gloves",
+    "src": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=2400&q=85",
+    "file": null
+  }
+]

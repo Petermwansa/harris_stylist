@@ -4,13 +4,17 @@ import Gallery from "@/components/sections/collections/Gallery";
 import Reveal from "@/components/motion/Reveal";
 import Button from "@/components/ui/Button";
 import { images } from "@/lib/images";
+import { getWorks } from "@/lib/works";
 
 export const metadata: Metadata = {
   title: "Collections",
   description: "Couture, bridal, menswear and ready-to-wear pieces by Harris.",
 };
 
-export default function CollectionsPage() {
+// `async`: a server component can wait for data before rendering.
+export default async function CollectionsPage() {
+  const works = await getWorks(); // runs on the server (cached — see lib/works.ts)
+
   return (
     <main>
       <Hero
@@ -25,7 +29,7 @@ export default function CollectionsPage() {
 
       <section className="section">
         <div className="wrap">
-          <Gallery />
+          <Gallery works={works} />
 
           <Reveal className="center-block">
             <p className="lead-italic">Love a piece? We can make it yours, in your size and fabric.</p>
